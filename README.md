@@ -2,6 +2,10 @@
 
 An interactive view of Anthropic's "Building Effective AI Agents" eBook, packaged as three React experiences.
 
+## Live site
+
+- Public site: [better-software-foundation.com](https://better-software-foundation.com)
+
 ## Routes
 
 - `/` Home page
@@ -29,13 +33,12 @@ npm run dev
 npm run build
 ```
 
-## Deploying to Vercel
+## Project overview
 
-1. Push this project to `Better-Software-Foundation/building-effective-ai-agents`.
-2. In Vercel, create a new project from that GitHub repository.
-3. Accept the default Vite settings:
-   - Build command: `npm run build`
-   - Output directory: `dist`
-4. Deploy.
+This project presents the source material through three public-facing experiences:
+
+- `Executive Summary`: a compressed, high-signal walkthrough of the main argument
+- `Architecture Patterns`: an interactive comparison of agent design options
+- `Decision Framework`: a guided chooser for selecting an architecture approach
 
 `vercel.json` includes a rewrite so direct visits to routes like `/summary` or `/decision` load correctly.

@@ -121,6 +121,52 @@ a {
   color: #4f4b44;
 }
 
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+.primary-link,
+.secondary-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.primary-link {
+  background: #1f1f1f;
+  color: #f8f5ef;
+}
+
+.secondary-link {
+  border: 1px solid rgba(31, 31, 31, 0.12);
+  color: #4f4b44;
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.highlights-panel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.highlight-pill {
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.84);
+  border: 1px solid rgba(31, 31, 31, 0.06);
+  box-shadow: 0 10px 28px rgba(31, 31, 31, 0.05);
+  color: #4f4b44;
+  line-height: 1.45;
+}
+
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -160,6 +206,13 @@ a {
   padding: 22px;
 }
 
+.source-panel {
+  padding: 22px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(31, 31, 31, 0.06);
+  border-radius: 22px;
+}
+
 @media (max-width: 720px) {
   .nav-inner {
     align-items: flex-start;
@@ -168,7 +221,8 @@ a {
 
   .hero,
   .experience-card,
-  .guidance-panel {
+  .guidance-panel,
+  .source-panel {
     border-radius: 18px;
   }
 }

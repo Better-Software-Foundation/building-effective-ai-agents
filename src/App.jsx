@@ -24,17 +24,53 @@ const experiences = [
   },
 ];
 
+const quickPoints = [
+  "Built for people who need the big ideas fast",
+  "Focused on agent patterns, tradeoffs, and practical decisions",
+  "Designed as a companion to the original guide, not a replacement for it",
+];
+
+const visitorGuidance = [
+  {
+    label: "Suggested Path",
+    text: "Start with the summary, compare patterns next, then use the decision framework when you need a recommendation.",
+  },
+  {
+    label: "Best For",
+    text: "Engineering leaders, product teams, technical educators, and curious builders exploring agent design choices.",
+  },
+];
+
 function HomePage() {
   return (
     <main className="shell home-shell">
       <section className="hero">
-        <p className="eyebrow">Interactive Guide</p>
+        <p className="eyebrow">Better Software Foundation</p>
         <h1>Building Effective AI Agents</h1>
         <p className="hero-copy">
-          Three interactive experiences designed for busy readers who want the
-          core ideas, architecture choices, and decision logic without reading a
-          full whitepaper.
+          Three interactive experiences for readers who want the core ideas,
+          architecture choices, and decision logic from Anthropic&apos;s guide
+          without having to work through the entire document in one sitting.
         </p>
+        <div className="hero-actions">
+          <Link className="primary-link" to="/summary">
+            Start with the summary
+          </Link>
+          <a
+            className="secondary-link"
+            href="https://better-software-foundation.com"
+          >
+            Visit live site
+          </a>
+        </div>
+      </section>
+
+      <section className="highlights-panel">
+        {quickPoints.map((item) => (
+          <div key={item} className="highlight-pill">
+            {item}
+          </div>
+        ))}
       </section>
 
       <section className="card-grid">
@@ -50,20 +86,21 @@ function HomePage() {
       </section>
 
       <section className="guidance-panel">
-        <div>
-          <p className="panel-label">Suggested Order</p>
-          <p className="panel-text">
-            Start with the summary, compare patterns next, then use the
-            decision framework for a recommendation.
-          </p>
-        </div>
-        <div>
-          <p className="panel-label">Deploy Shape</p>
-          <p className="panel-text">
-            This app is a static Vite + React site, which makes it inexpensive
-            and straightforward to host on Vercel.
-          </p>
-        </div>
+        {visitorGuidance.map((item) => (
+          <div key={item.label}>
+            <p className="panel-label">{item.label}</p>
+            <p className="panel-text">{item.text}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="source-panel">
+        <p className="panel-label">About This Project</p>
+        <p className="panel-text">
+          This site translates the ideas from Anthropic&apos;s{" "}
+          <em>Building Effective AI Agents</em> into a more visual,
+          interactive, and time-efficient format for public learning.
+        </p>
       </section>
     </main>
   );
