@@ -24,6 +24,9 @@ const experiences = [
   },
 ];
 
+const sourceUrl =
+  "https://resources.anthropic.com/hubfs/Building%20Effective%20AI%20Agents-%20Architecture%20Patterns%20and%20Implementation%20Frameworks.pdf";
+
 const quickPoints = [
   "Built for people who need the big ideas fast",
   "Focused on agent patterns, tradeoffs, and practical decisions",
@@ -102,6 +105,15 @@ function HomePage() {
           interactive, and time-efficient format for public learning.
         </p>
       </section>
+
+      <footer className="site-footer">
+        <p className="footer-text">
+          Source:{" "}
+          <a href={sourceUrl} target="_blank" rel="noreferrer">
+            Anthropic, &quot;Building Effective AI Agents: Architecture Patterns and Implementation Frameworks&quot; (PDF)
+          </a>
+        </p>
+      </footer>
     </main>
   );
 }

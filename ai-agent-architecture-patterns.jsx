@@ -1,5 +1,8 @@
 import { useState } from "react";
 
+const sourceUrl =
+  "https://resources.anthropic.com/hubfs/Building%20Effective%20AI%20Agents-%20Architecture%20Patterns%20and%20Implementation%20Frameworks.pdf";
+
 const patterns = [
   {
     id: "single",
@@ -410,7 +413,10 @@ export default function ArchitecturePatterns() {
         </div>
 
         <p style={{ textAlign: "center", fontSize: 11, color: "#aaa", marginTop: 28, fontFamily: "'Helvetica Neue', sans-serif" }}>
-          Source: "Building Effective AI Agents" — Anthropic (2025)
+          Source:{" "}
+          <a href={sourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
+            Anthropic, "Building Effective AI Agents: Architecture Patterns and Implementation Frameworks" (PDF)
+          </a>
         </p>
       </div>
     </div>
