@@ -1,6 +1,6 @@
 # Building Effective AI Agents
 
-Interactive React experiences inspired by Anthropic's "Building Effective AI Agents" guide.
+An interactive view of Anthropic's "Building Effective AI Agents" eBook, packaged as three React experiences.
 
 ## Routes
 
