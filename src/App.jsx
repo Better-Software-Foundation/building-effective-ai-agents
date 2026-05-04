@@ -1,4 +1,5 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
+import { Analytics } from "@vercel/analytics/react";
 import ExecutiveSummary from "../ai-agent-executive-summary.jsx";
 import ArchitecturePatterns from "../ai-agent-architecture-patterns.jsx";
 import DecisionFramework from "../ai-agent-decision-framework.jsx";
@@ -158,6 +159,7 @@ export default function App() {
         <Route path="/patterns" element={<ArchitecturePatterns />} />
         <Route path="/decision" element={<DecisionFramework />} />
       </Routes>
+      <Analytics />
     </div>
   );
 }
