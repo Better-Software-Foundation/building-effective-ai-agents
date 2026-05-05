@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 const sourceUrl =
@@ -85,10 +86,10 @@ const sections = [
 ];
 
 const nextSteps = [
-  { label: "Read next", text: "Go to the Architecture Patterns view if you need to compare options quickly." },
-  { label: "Implementation lens", text: "Go to Foundations & Guardrails for the model, tools, instructions, and safety layer." },
-  { label: "Decision lens", text: "Go to the Decision Framework when you need a recommendation under time pressure." },
-  { label: "Compare the sources", text: "Go to Compare for the terminology crosswalk and the breadth-versus-depth matrix." },
+  { label: "Read next", text: "Go to the Architecture Patterns view if you need to compare options quickly.", to: "/patterns" },
+  { label: "Implementation lens", text: "Go to Foundations & Guardrails for the model, tools, instructions, and safety layer.", to: "/foundations" },
+  { label: "Decision lens", text: "Go to the Decision Framework when you need a recommendation under time pressure.", to: "/decision" },
+  { label: "Compare the sources", text: "Go to Compare for the terminology crosswalk and the breadth-versus-depth matrix.", to: "/compare" },
 ];
 
 export default function ExecutiveSummary() {
@@ -255,12 +256,16 @@ export default function ExecutiveSummary() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(210px, 1fr))", gap: 10 }}>
             {nextSteps.map((step) => (
-              <div key={step.label} style={{ padding: "12px 14px", background: "#1A1A1A", borderRadius: 8, border: "1px solid #303030" }}>
+              <Link
+                key={step.label}
+                to={step.to}
+                style={{ padding: "12px 14px", background: "#1A1A1A", borderRadius: 8, border: "1px solid #303030", textDecoration: "none" }}
+              >
                 <p style={{ margin: "0 0 6px", fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 1.2, textTransform: "uppercase", color: "#D4A574" }}>
                   {step.label}
                 </p>
                 <p style={{ margin: 0, fontSize: 13, lineHeight: 1.5, color: "#CAC2B8" }}>{step.text}</p>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

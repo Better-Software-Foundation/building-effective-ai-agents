@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import SourceBadge from "./components/SourceBadge";
 import {
@@ -121,6 +122,11 @@ export default function ComparativeGuide() {
           </p>
           <p style={{ margin: "0 0 14px", fontSize: 15, lineHeight: 1.65, color: "#333" }}>
             {comparativeGuideSummary.text}
+          </p>
+          <p style={{ margin: "0 0 14px", fontSize: 13.5, lineHeight: 1.55, color: "#666" }}>
+            The scoring, canonical terms, and crosswalk notes on this page are
+            editorial synthesis designed to shorten the reading path while
+            keeping source differences visible.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             <SourceBadge sourceId="anthropic" />
@@ -377,6 +383,61 @@ export default function ComparativeGuide() {
             </div>
           </div>
         )}
+
+        <div
+          style={{
+            marginTop: 24,
+            padding: 18,
+            background: "#fff",
+            borderRadius: 12,
+            border: "1px solid #E0DCD6",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "'Helvetica Neue', sans-serif",
+              fontSize: 11,
+              letterSpacing: 2,
+              textTransform: "uppercase",
+              color: "#888",
+              margin: "0 0 12px",
+            }}
+          >
+            Continue Fast
+          </p>
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+              gap: 12,
+            }}
+          >
+            <Link to="/summary" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
+              <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
+                Read the overview
+              </p>
+              <p style={{ margin: 0, fontSize: 13, color: "#555", lineHeight: 1.5 }}>
+                Start with the Executive Summary if you want the shortest architecture and tradeoff briefing.
+              </p>
+            </Link>
+            <Link to="/foundations" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
+              <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
+                Go deeper on implementation
+              </p>
+              <p style={{ margin: 0, fontSize: 13, color: "#555", lineHeight: 1.5 }}>
+                Open Foundations & Guardrails if you need the model, tools, instructions, and safety layer.
+              </p>
+            </Link>
+            <Link to="/decision" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
+              <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
+                Make a decision
+              </p>
+              <p style={{ margin: 0, fontSize: 13, color: "#555", lineHeight: 1.5 }}>
+                Use the Decision Framework when you are ready to turn comparison into a concrete architecture choice.
+              </p>
+            </Link>
+          </div>
+        </div>
 
         <div style={{ marginTop: 28, textAlign: "center", fontSize: 11, color: "#777", fontFamily: "'Helvetica Neue', sans-serif" }}>
           <p style={{ margin: "0 0 6px" }}>

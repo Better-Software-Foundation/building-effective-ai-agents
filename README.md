@@ -1,6 +1,6 @@
 # Building Effective AI Agents
 
-An interactive guide that began as an adaptation of Anthropic's "Building Effective AI Agents" and is now expanding toward a synthesized experience across Anthropic and OpenAI guidance on building agents.
+An interactive guide that synthesizes Anthropic's and OpenAI's guidance on building agents into a smaller set of decision-oriented learning experiences.
 
 ## Live site
 
@@ -12,8 +12,8 @@ An interactive guide that began as an adaptation of Anthropic's "Building Effect
 - `/summary` Executive summary
 - `/patterns` Architecture patterns
 - `/decision` Decision framework
-- `/foundations` Foundations & Guardrails roadmap preview
-- `/compare` Comparative Guide roadmap preview
+- `/foundations` Foundations & Guardrails
+- `/compare` Comparative Guide
 
 ## Local development
 
@@ -37,11 +37,11 @@ npm run build
 
 ## Project overview
 
-This project currently presents the source material through three live experiences and two planned synthesis routes:
+This project presents the source material through five live experiences:
 
-- `Executive Summary`: a compressed, high-signal walkthrough of the main argument
-- `Architecture Patterns`: an interactive comparison of agent design options
-- `Decision Framework`: a guided chooser for selecting an architecture approach
+- `Executive Summary`: a compressed, high-signal walkthrough of the main architecture and tradeoff argument
+- `Architecture Patterns`: an interactive comparison of agent design options and cross-source orchestration mappings
+- `Decision Framework`: a guided chooser for deciding whether a workflow should be agentic and what architecture to start with
 - `Foundations & Guardrails`: live implementation-focused route drawing more heavily from OpenAI
 - `Comparative Guide`: live crosswalk route comparing Anthropic and OpenAI directly, including a breadth-vs-depth matrix
 

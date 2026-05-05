@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useState } from "react";
 import SourceBadge from "./components/SourceBadge";
 
@@ -409,6 +410,11 @@ export default function FoundationsAndGuardrails() {
           >
             Continue Fast
           </p>
+          <p style={{ margin: "0 0 14px", fontSize: 13.5, color: "#666", lineHeight: 1.55 }}>
+            This page is strongest on implementation fundamentals. Move next
+            based on whether you need qualification, architecture selection, or
+            source comparison.
+          </p>
           <div
             style={{
               display: "grid",
@@ -416,7 +422,7 @@ export default function FoundationsAndGuardrails() {
               gap: 12,
             }}
           >
-            <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
+            <Link to="/decision" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
               <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
                 Read next
               </p>
@@ -424,8 +430,8 @@ export default function FoundationsAndGuardrails() {
                 Use the Decision Framework to decide whether your workflow should
                 be agentic before choosing an architecture.
               </p>
-            </div>
-            <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
+            </Link>
+            <Link to="/patterns" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
               <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
                 Implementation rule
               </p>
@@ -433,7 +439,15 @@ export default function FoundationsAndGuardrails() {
                 Build foundations first. More orchestration is not a substitute
                 for weak tools, weak prompts, or missing guardrails.
               </p>
-            </div>
+            </Link>
+            <Link to="/compare" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
+              <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
+                Methodology note
+              </p>
+              <p style={{ margin: 0, fontSize: 13, color: "#555", lineHeight: 1.5 }}>
+                Use Compare to see where this page is OpenAI-led, where Anthropic complements it, and how the synthesis language was chosen.
+              </p>
+            </Link>
           </div>
         </div>
 
