@@ -214,7 +214,11 @@ a {
 }
 
 .site-footer {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
   padding-bottom: 12px;
+  text-align: center;
 }
 
 .footer-text {

@@ -9,6 +9,12 @@ const quickTakeaways = [
   "Invest in observability early so you can explain cost, quality, and failure modes.",
 ];
 
+const summaryRole = [
+  "This page gives the fastest strategic read on the architecture and tradeoff side of the topic.",
+  "Use Foundations & Guardrails next if you need implementation building blocks, safety layers, and human-oversight guidance.",
+  "Use Compare if you want the terminology crosswalk and the breadth-versus-depth view across both guides.",
+];
+
 const sections = [
   {
     id: "thesis",
@@ -80,8 +86,9 @@ const sections = [
 
 const nextSteps = [
   { label: "Read next", text: "Go to the Architecture Patterns view if you need to compare options quickly." },
+  { label: "Implementation lens", text: "Go to Foundations & Guardrails for the model, tools, instructions, and safety layer." },
   { label: "Decision lens", text: "Go to the Decision Framework when you need a recommendation under time pressure." },
-  { label: "Operating rule", text: "Escalate architecture complexity only after a simpler version has shown measurable limits." },
+  { label: "Compare the sources", text: "Go to Compare for the terminology crosswalk and the breadth-versus-depth matrix." },
 ];
 
 export default function ExecutiveSummary() {
@@ -99,7 +106,7 @@ export default function ExecutiveSummary() {
             Building Effective AI Agents
           </h1>
           <p style={{ fontSize: 13.5, color: "#999", margin: 0, fontStyle: "italic" }}>
-            A fast-reading version of the guide for people who need the argument, tradeoffs, and next move.
+            An Anthropic-led opening brief for the broader interactive synthesis across Anthropic and OpenAI guidance.
           </p>
         </div>
 
@@ -114,6 +121,19 @@ export default function ExecutiveSummary() {
             {quickTakeaways.map((item) => (
               <div key={item} style={{ padding: "12px 14px", background: "#2A2420", borderRadius: 8, border: "1px solid #43352A" }}>
                 <p style={{ margin: 0, fontSize: 13, lineHeight: 1.5, color: "#E8DFD4" }}>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div style={{ marginBottom: 26, padding: 20, background: "#222", borderRadius: 12, border: "1px solid #343434" }}>
+          <p style={{ fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#D4A574", margin: "0 0 10px" }}>
+            How To Use This Page
+          </p>
+          <div style={{ display: "grid", gap: 10 }}>
+            {summaryRole.map((item) => (
+              <div key={item} style={{ padding: "12px 14px", background: "#1A1A1A", borderRadius: 8, border: "1px solid #303030" }}>
+                <p style={{ margin: 0, fontSize: 13, lineHeight: 1.55, color: "#CAC2B8" }}>{item}</p>
               </div>
             ))}
           </div>
