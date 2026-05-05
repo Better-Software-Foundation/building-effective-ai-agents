@@ -82,7 +82,7 @@ export const routeArchitecture = [
     title: "Comparative Guide",
     description:
       "Crosswalk the terminology, strengths, and blind spots of the Anthropic and OpenAI guides.",
-    status: "planned",
+    status: "live",
     sourceIds: ["anthropic", "openai", "synthesis"],
     role: "Cross-source synthesis and comparison",
     plannedSections: [
@@ -156,4 +156,129 @@ export const synthesisPrinciples = [
   "Use OpenAI as the stronger foundations and guardrails lens.",
   "Keep source attribution explicit so readers can separate original claims from synthesis.",
   "Prefer shared canonical language only when the concept truly overlaps.",
+];
+
+export const comparativeGuideSummary = {
+  title: "How the guides differ",
+  text:
+    "Anthropic and OpenAI overlap on core agent-building principles, but they optimize for different reader needs. Anthropic is broader on architecture, evolution, and tradeoffs. OpenAI is deeper on foundations, orchestration mechanics, and guardrails. This app aims to combine both into a more navigable learning experience.",
+};
+
+export const breadthDepthProfiles = [
+  {
+    id: "anthropic",
+    label: "Anthropic guide",
+    badgeId: "anthropic",
+    breadth: 5,
+    depth: 4,
+    summary: "Broadest lens on architecture patterns, business framing, and evolution paths.",
+  },
+  {
+    id: "openai",
+    label: "OpenAI guide",
+    badgeId: "openai",
+    breadth: 3,
+    depth: 5,
+    summary: "Deepest lens on implementation foundations, orchestration mechanics, and guardrails.",
+  },
+  {
+    id: "app",
+    label: "This interactive guide",
+    badgeId: "synthesis",
+    breadth: 4,
+    depth: 4,
+    summary: "Selective depth plus cross-source synthesis intended to reduce reading time and improve application.",
+  },
+];
+
+export const topicCoverage = [
+  {
+    topic: "What is an agent?",
+    rationale: "OpenAI defines the agent boundary more explicitly; the app now makes that framing easier to absorb.",
+    anthropic: { breadth: 2, depth: 2 },
+    openai: { breadth: 4, depth: 5 },
+    app: { breadth: 4, depth: 4 },
+  },
+  {
+    topic: "When should you build one?",
+    rationale: "OpenAI provides a practical pre-filter for deciding whether a workflow should be agentic at all.",
+    anthropic: { breadth: 3, depth: 3 },
+    openai: { breadth: 4, depth: 4 },
+    app: { breadth: 4, depth: 4 },
+  },
+  {
+    topic: "Model / tools / behavior foundation",
+    rationale: "OpenAI goes deeper on the foundation stack, while Anthropic reinforces modularity and skills.",
+    anthropic: { breadth: 3, depth: 3 },
+    openai: { breadth: 5, depth: 5 },
+    app: { breadth: 4, depth: 4 },
+  },
+  {
+    topic: "Architecture pattern taxonomy",
+    rationale: "Anthropic distinguishes more pattern types explicitly, which makes it the broader architecture reference.",
+    anthropic: { breadth: 5, depth: 5 },
+    openai: { breadth: 3, depth: 4 },
+    app: { breadth: 5, depth: 4 },
+  },
+  {
+    topic: "Manager / supervisory coordination",
+    rationale: "Both cover central coordination, with OpenAI leaning more implementation-first.",
+    anthropic: { breadth: 4, depth: 4 },
+    openai: { breadth: 4, depth: 5 },
+    app: { breadth: 4, depth: 4 },
+  },
+  {
+    topic: "Decentralized handoffs / collaboration",
+    rationale: "Anthropic is broader on collaboration; OpenAI is sharper on handoff mechanics.",
+    anthropic: { breadth: 4, depth: 4 },
+    openai: { breadth: 3, depth: 4 },
+    app: { breadth: 4, depth: 4 },
+  },
+  {
+    topic: "Guardrails and human intervention",
+    rationale: "OpenAI is materially deeper on concrete guardrails and intervention triggers.",
+    anthropic: { breadth: 3, depth: 3 },
+    openai: { breadth: 5, depth: 5 },
+    app: { breadth: 4, depth: 4 },
+  },
+  {
+    topic: "Observability and production watchouts",
+    rationale: "Anthropic is stronger on operational watchouts and strategic production framing.",
+    anthropic: { breadth: 5, depth: 4 },
+    openai: { breadth: 3, depth: 3 },
+    app: { breadth: 4, depth: 4 },
+  },
+];
+
+export const sourceStrengths = [
+  {
+    title: "Anthropic's strongest contribution",
+    sourceId: "anthropic",
+    points: [
+      "Broader architecture taxonomy",
+      "Clear evolution path from simple to multi-agent systems",
+      "Strong business and production framing",
+      "Useful token-cost and complexity tradeoff lens",
+    ],
+  },
+  {
+    title: "OpenAI's strongest contribution",
+    sourceId: "openai",
+    points: [
+      "Clearer definition of what counts as an agent",
+      "More explicit model / tools / instructions foundation",
+      "Sharper guidance on orchestration mechanics",
+      "Much deeper guardrails and human-intervention framing",
+    ],
+  },
+  {
+    title: "What the synthesis adds",
+    sourceId: "synthesis",
+    points: [
+      "A route that starts with agent fit before architecture choice",
+      "Cross-source terminology translation",
+      "A single product that links concept, decision, implementation, and comparison",
+      "Faster comprehension than reading both guides linearly",
+    ],
+  },
 ];

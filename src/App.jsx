@@ -11,11 +11,12 @@ import ExecutiveSummary from "../ai-agent-executive-summary.jsx";
 import ArchitecturePatterns from "../ai-agent-architecture-patterns.jsx";
 import DecisionFramework from "../ai-agent-decision-framework.jsx";
 import FoundationsAndGuardrails from "./FoundationsAndGuardrails";
+import ComparativeGuide from "./ComparativeGuide";
 
 const quickPoints = [
   "Built for people who need the big ideas fast",
   "Now expanding toward a synthesis of Anthropic and OpenAI guidance",
-  "Focused on patterns, tradeoffs, implementation foundations, and practical decisions",
+  "Focused on patterns, tradeoffs, implementation foundations, practical decisions, and cross-source comparison",
 ];
 
 const visitorGuidance = [
@@ -147,9 +148,9 @@ function HomePage() {
         <p className="panel-label">About This Project</p>
         <p className="panel-text">
           This site is shifting from a single-source interactive adaptation into
-          a comparative learning product. The current milestone establishes the
-          synthesis foundation: shared attribution, route architecture,
-          terminology mapping, and planned experiences.
+          a comparative learning product. The current milestone now includes a
+          live comparative guide with a terminology crosswalk and a breadth
+          versus depth reading aid.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14 }}>
           <SourceBadge sourceId="anthropic" />
@@ -226,8 +227,6 @@ function SiteNav() {
 }
 
 export default function App() {
-  const compare = routeArchitecture.find((item) => item.path === "/compare");
-
   return (
     <div className="app-frame">
       <SiteNav />
@@ -237,17 +236,7 @@ export default function App() {
         <Route path="/patterns" element={<ArchitecturePatterns />} />
         <Route path="/decision" element={<DecisionFramework />} />
         <Route path="/foundations" element={<FoundationsAndGuardrails />} />
-        <Route
-          path="/compare"
-          element={
-            <PlannedExperiencePage
-              title={compare.title}
-              summary={compare.description}
-              plannedSections={compare.plannedSections}
-              sourceIds={compare.sourceIds}
-            />
-          }
-        />
+        <Route path="/compare" element={<ComparativeGuide />} />
       </Routes>
       <Analytics />
     </div>
