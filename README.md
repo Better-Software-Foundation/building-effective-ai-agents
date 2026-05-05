@@ -1,6 +1,6 @@
 # Building Effective AI Agents
 
-An interactive view of Anthropic's "Building Effective AI Agents" eBook, packaged as three React experiences.
+An interactive guide that began as an adaptation of Anthropic's "Building Effective AI Agents" and is now expanding toward a synthesized experience across Anthropic and OpenAI guidance on building agents.
 
 ## Live site
 
@@ -12,6 +12,8 @@ An interactive view of Anthropic's "Building Effective AI Agents" eBook, package
 - `/summary` Executive summary
 - `/patterns` Architecture patterns
 - `/decision` Decision framework
+- `/foundations` Foundations & Guardrails roadmap preview
+- `/compare` Comparative Guide roadmap preview
 
 ## Local development
 
@@ -35,10 +37,12 @@ npm run build
 
 ## Project overview
 
-This project presents the source material through three public-facing experiences:
+This project currently presents the source material through three live experiences and two planned synthesis routes:
 
 - `Executive Summary`: a compressed, high-signal walkthrough of the main argument
 - `Architecture Patterns`: an interactive comparison of agent design options
 - `Decision Framework`: a guided chooser for selecting an architecture approach
+- `Foundations & Guardrails`: planned implementation-focused route drawing more heavily from OpenAI
+- `Comparative Guide`: planned crosswalk route comparing Anthropic and OpenAI directly
 
 `vercel.json` includes a rewrite so direct visits to routes like `/summary` or `/decision` load correctly.

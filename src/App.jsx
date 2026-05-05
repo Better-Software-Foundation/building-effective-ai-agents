@@ -1,49 +1,73 @@
 import { Link, Route, Routes, useLocation } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import SourceBadge from "./components/SourceBadge";
+import {
+  routeArchitecture,
+  sourceRegistry,
+  synthesisPrinciples,
+  terminologyCrosswalk,
+} from "./content/synthesisModel";
 import ExecutiveSummary from "../ai-agent-executive-summary.jsx";
 import ArchitecturePatterns from "../ai-agent-architecture-patterns.jsx";
 import DecisionFramework from "../ai-agent-decision-framework.jsx";
 
-const experiences = [
-  {
-    path: "/summary",
-    title: "Executive Summary",
-    description:
-      "A fast-reading version of the guide with key principles, watchouts, and the clearest takeaways.",
-  },
-  {
-    path: "/patterns",
-    title: "Architecture Patterns",
-    description:
-      "Explore the main agent patterns, compare their tradeoffs, and see when hybrid approaches make sense.",
-  },
-  {
-    path: "/decision",
-    title: "Decision Framework",
-    description:
-      "Answer four questions to get a practical recommendation, a fallback option, and a likely evolution path.",
-  },
-];
-
-const sourceUrl =
-  "https://resources.anthropic.com/hubfs/Building%20Effective%20AI%20Agents-%20Architecture%20Patterns%20and%20Implementation%20Frameworks.pdf";
-
 const quickPoints = [
   "Built for people who need the big ideas fast",
-  "Focused on agent patterns, tradeoffs, and practical decisions",
-  "Designed as a companion to the original guide, not a replacement for it",
+  "Now expanding toward a synthesis of Anthropic and OpenAI guidance",
+  "Focused on patterns, tradeoffs, implementation foundations, and practical decisions",
 ];
 
 const visitorGuidance = [
   {
     label: "Suggested Path",
-    text: "Start with the summary, compare patterns next, then use the decision framework when you need a recommendation.",
+    text: "Start with the summary, compare patterns next, then use the decision framework before diving into foundations and comparative analysis.",
   },
   {
     label: "Best For",
     text: "Engineering leaders, product teams, technical educators, and curious builders exploring agent design choices.",
   },
 ];
+
+const liveExperiences = routeArchitecture.filter((item) => item.status === "live");
+const sourceList = [sourceRegistry.anthropic, sourceRegistry.openai];
+
+function PlannedExperiencePage({ title, summary, plannedSections, sourceIds }) {
+  return (
+    <main className="shell" style={{ display: "grid", gap: 22 }}>
+      <section className="hero">
+        <p className="eyebrow">Planned Experience</p>
+        <h1 style={{ maxWidth: "none" }}>{title}</h1>
+        <p className="hero-copy">{summary}</p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 18 }}>
+          {sourceIds.map((sourceId) => (
+            <SourceBadge key={sourceId} sourceId={sourceId} />
+          ))}
+        </div>
+      </section>
+
+      <section className="guidance-panel">
+        <div>
+          <p className="panel-label">Why this page exists</p>
+          <p className="panel-text">
+            This route is part of the new synthesis architecture. It will help
+            bridge the current Anthropic-focused app with OpenAI&apos;s practical
+            implementation guidance.
+          </p>
+        </div>
+        <div>
+          <p className="panel-label">Planned sections</p>
+          <div className="panel-text">
+            {plannedSections.map((section) => (
+              <p key={section} style={{ margin: "0 0 6px" }}>
+                {section}
+              </p>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+  );
+}
 
 function HomePage() {
   return (
@@ -52,9 +76,10 @@ function HomePage() {
         <p className="eyebrow">Better Software Foundation</p>
         <h1>Building Effective AI Agents</h1>
         <p className="hero-copy">
-          Three interactive experiences for readers who want the core ideas,
-          architecture choices, and decision logic from Anthropic&apos;s guide
-          without having to work through the entire document in one sitting.
+          An interactive guide that began as an adaptation of Anthropic&apos;s
+          framework and is now evolving into a synthesized learning experience
+          across Anthropic and OpenAI guidance on agent design, implementation,
+          and safety.
         </p>
         <div className="hero-actions">
           <Link className="primary-link" to="/summary">
@@ -78,13 +103,32 @@ function HomePage() {
       </section>
 
       <section className="card-grid">
-        {experiences.map((item) => (
+        {routeArchitecture.map((item) => (
           <article key={item.path} className="experience-card">
             <p className="card-kicker">{item.title}</p>
             <p className="card-text">{item.description}</p>
-            <Link className="card-link" to={item.path}>
-              Open experience
-            </Link>
+            <div
+              style={{
+                display: "flex",
+                flexWrap: "wrap",
+                gap: 8,
+                marginTop: 14,
+                marginBottom: 18,
+              }}
+            >
+              {item.sourceIds.map((sourceId) => (
+                <SourceBadge key={sourceId} sourceId={sourceId} />
+              ))}
+            </div>
+            {item.status === "live" ? (
+              <Link className="card-link" to={item.path}>
+                Open experience
+              </Link>
+            ) : (
+              <Link className="card-link" to={item.path}>
+                View roadmap preview
+              </Link>
+            )}
           </article>
         ))}
       </section>
@@ -101,19 +145,50 @@ function HomePage() {
       <section className="source-panel">
         <p className="panel-label">About This Project</p>
         <p className="panel-text">
-          This site translates the ideas from Anthropic&apos;s{" "}
-          <em>Building Effective AI Agents</em> into a more visual,
-          interactive, and time-efficient format for public learning.
+          This site is shifting from a single-source interactive adaptation into
+          a comparative learning product. The current milestone establishes the
+          synthesis foundation: shared attribution, route architecture,
+          terminology mapping, and planned experiences.
         </p>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14 }}>
+          <SourceBadge sourceId="anthropic" />
+          <SourceBadge sourceId="openai" />
+          <SourceBadge sourceId="synthesis" />
+        </div>
+      </section>
+
+      <section className="guidance-panel">
+        <div>
+          <p className="panel-label">Synthesis principles</p>
+          <div className="panel-text">
+            {synthesisPrinciples.map((item) => (
+              <p key={item} style={{ margin: "0 0 8px" }}>
+                {item}
+              </p>
+            ))}
+          </div>
+        </div>
+        <div>
+          <p className="panel-label">Sample term crosswalk</p>
+          <div className="panel-text">
+            {terminologyCrosswalk.slice(0, 3).map((item) => (
+              <p key={item.concept} style={{ margin: "0 0 10px" }}>
+                <strong>{item.concept}:</strong> {item.canonical}
+              </p>
+            ))}
+          </div>
+        </div>
       </section>
 
       <footer className="site-footer">
-        <p className="footer-text">
-          Source:{" "}
-          <a href={sourceUrl} target="_blank" rel="noreferrer">
-            Anthropic, &quot;Building Effective AI Agents: Architecture Patterns and Implementation Frameworks&quot; (PDF)
-          </a>
-        </p>
+        {sourceList.map((source) => (
+          <p key={source.id} className="footer-text">
+            Source:{" "}
+            <a href={source.url} target="_blank" rel="noreferrer">
+              {source.label}, &quot;{source.title}&quot;
+            </a>
+          </p>
+        ))}
       </footer>
     </main>
   );
@@ -133,7 +208,7 @@ function SiteNav() {
           <Link className={location.pathname === "/" ? "active" : ""} to="/">
             Home
           </Link>
-          {experiences.map((item) => (
+          {liveExperiences.map((item) => (
             <Link
               key={item.path}
               className={location.pathname === item.path ? "active" : ""}
@@ -150,6 +225,9 @@ function SiteNav() {
 }
 
 export default function App() {
+  const foundations = routeArchitecture.find((item) => item.path === "/foundations");
+  const compare = routeArchitecture.find((item) => item.path === "/compare");
+
   return (
     <div className="app-frame">
       <SiteNav />
@@ -158,6 +236,28 @@ export default function App() {
         <Route path="/summary" element={<ExecutiveSummary />} />
         <Route path="/patterns" element={<ArchitecturePatterns />} />
         <Route path="/decision" element={<DecisionFramework />} />
+        <Route
+          path="/foundations"
+          element={
+            <PlannedExperiencePage
+              title={foundations.title}
+              summary={foundations.description}
+              plannedSections={foundations.plannedSections}
+              sourceIds={foundations.sourceIds}
+            />
+          }
+        />
+        <Route
+          path="/compare"
+          element={
+            <PlannedExperiencePage
+              title={compare.title}
+              summary={compare.description}
+              plannedSections={compare.plannedSections}
+              sourceIds={compare.sourceIds}
+            />
+          }
+        />
       </Routes>
       <Analytics />
     </div>
