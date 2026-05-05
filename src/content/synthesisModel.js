@@ -50,7 +50,7 @@ export const routeArchitecture = [
     description:
       "Compare orchestration patterns, tradeoffs, and where different guides align or diverge.",
     status: "live",
-    sourceIds: ["anthropic"],
+    sourceIds: ["anthropic", "openai", "synthesis"],
     role: "Architecture options and tradeoffs",
   },
   {

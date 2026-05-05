@@ -1,7 +1,9 @@
 import { useState } from "react";
+import SourceBadge from "./src/components/SourceBadge";
 
-const sourceUrl =
+const anthropicSourceUrl =
   "https://resources.anthropic.com/hubfs/Building%20Effective%20AI%20Agents-%20Architecture%20Patterns%20and%20Implementation%20Frameworks.pdf";
+const openaiSourceUrl = "https://openai.com/index/a-practical-guide-to-building-agents/";
 
 const patterns = [
   {
@@ -26,6 +28,13 @@ const patterns = [
     insight: "Before adding more agents, try making one agent better equipped.",
     mistake: "Teams often escalate to multi-agent too early instead of improving prompts, tools, or skills.",
     metrics: { control: "High", cost: "Low", speed: "Fast", complexity: "Low" },
+    sourceIds: ["anthropic", "openai", "both"],
+    sourceFraming: {
+      anthropic: "Anthropic treats the single agent as the best starting point for most enterprise use cases and emphasizes adding skills before orchestration.",
+      openai: "OpenAI explicitly recommends maximizing one capable agent first before splitting logic across multiple agents.",
+      synthesis: "Both guides strongly align here: the default should be one capable agent with strong tools and behavior guidance.",
+    },
+    openaiMapping: "OpenAI single-agent systems",
   },
   {
     id: "hierarchical",
@@ -49,6 +58,13 @@ const patterns = [
     insight: "This is often the most practical first multi-agent pattern for enterprises.",
     mistake: "The supervisor becomes a bottleneck when too much context or too many decisions flow through one place.",
     metrics: { control: "Moderate-High", cost: "High", speed: "Medium", complexity: "Medium-High" },
+    sourceIds: ["anthropic", "openai", "both"],
+    sourceFraming: {
+      anthropic: "Anthropic frames this as hierarchical or supervisory coordination with a central controller and clear accountability.",
+      openai: "OpenAI calls the nearest equivalent the manager pattern, where specialist agents are used as tools by a central orchestrator.",
+      synthesis: "These are near-equivalent concepts, with OpenAI leaning more code-first and Anthropic leaning more organizational and architectural.",
+    },
+    openaiMapping: "OpenAI manager pattern (agents as tools)",
   },
   {
     id: "collaborative",
@@ -72,6 +88,13 @@ const patterns = [
     insight: "Useful for exploration, but expensive and harder to predict.",
     mistake: "Without clear collaboration rules, agents can duplicate work or bounce tasks indefinitely.",
     metrics: { control: "Low", cost: "Very High", speed: "Medium", complexity: "High" },
+    sourceIds: ["anthropic", "openai", "synthesis"],
+    sourceFraming: {
+      anthropic: "Anthropic explicitly emphasizes peer-to-peer collaboration, emergent coordination, and the value of multiple perspectives.",
+      openai: "OpenAI discusses decentralized handoffs, where agents operate as peers and transfer control to one another directly.",
+      synthesis: "They overlap, but are not identical: Anthropic goes broader on collaboration, while OpenAI is more specific about handoff mechanics.",
+    },
+    openaiMapping: "Related to OpenAI decentralized handoffs",
   },
   {
     id: "sequential",
@@ -95,6 +118,13 @@ const patterns = [
     insight: "Great for control and clarity when the process is knowable in advance.",
     mistake: "Teams force messy work into a rigid pipeline and then wonder why quality drops.",
     metrics: { control: "High", cost: "Medium", speed: "Medium-Slow", complexity: "Medium" },
+    sourceIds: ["anthropic", "synthesis"],
+    sourceFraming: {
+      anthropic: "Anthropic treats sequential workflows as a primary pattern for predictable multi-step processes and compliance-heavy flows.",
+      openai: "OpenAI does not foreground sequential workflow as a named category in the same way, but its guidance on routines and controlled workflows supports the same design instinct.",
+      synthesis: "This pattern is more explicitly articulated by Anthropic, but still compatible with OpenAI's implementation-first guidance.",
+    },
+    openaiMapping: "Implicitly supported through routines and controlled runs",
   },
   {
     id: "parallel",
@@ -118,6 +148,13 @@ const patterns = [
     insight: "A useful way to buy speed or breadth without full collaboration.",
     mistake: "Parallelism creates noise if outputs are hard to compare or reconcile.",
     metrics: { control: "Moderate", cost: "Medium-High", speed: "Fast", complexity: "Medium" },
+    sourceIds: ["anthropic", "synthesis"],
+    sourceFraming: {
+      anthropic: "Anthropic treats parallelism as a distinct workflow pattern for independent analyses and diverse viewpoints.",
+      openai: "OpenAI does not isolate parallel workflow as a named pattern in the guide, though manager-style coordination can still orchestrate multiple specialist calls.",
+      synthesis: "Parallel workflow remains more Anthropic-specific in this app's taxonomy, but it complements OpenAI's orchestration primitives.",
+    },
+    openaiMapping: "Can be composed inside manager-led orchestration",
   },
   {
     id: "evaluator",
@@ -141,6 +178,13 @@ const patterns = [
     insight: "Works best when feedback is concrete, actionable, and bounded.",
     mistake: "If the evaluator cannot give precise feedback, the loop burns cost without improving much.",
     metrics: { control: "Moderate-High", cost: "Medium-High", speed: "Slow", complexity: "Medium" },
+    sourceIds: ["anthropic", "synthesis"],
+    sourceFraming: {
+      anthropic: "Anthropic presents evaluator-optimizer as a specific workflow pattern for iterative quality improvement.",
+      openai: "OpenAI's guide does not name this pattern directly, but its emphasis on routines, guardrails, and explicit behavior design supports the same quality-control instinct.",
+      synthesis: "This remains mostly Anthropic framing, but it fits naturally into a broader implementation toolkit informed by OpenAI's safety guidance.",
+    },
+    openaiMapping: "No direct named equivalent in the guide",
   },
 ];
 
@@ -230,6 +274,11 @@ export default function ArchitecturePatterns() {
               <strong>Best for refinement:</strong> Evaluator-Optimizer
             </div>
           </div>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14 }}>
+            <SourceBadge sourceId="anthropic" />
+            <SourceBadge sourceId="openai" />
+            <SourceBadge sourceId="synthesis" />
+          </div>
         </div>
 
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 24 }}>
@@ -266,9 +315,33 @@ export default function ArchitecturePatterns() {
               </div>
             </div>
 
+            <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 12 }}>
+              {active.sourceIds.map((sourceId) => (
+                <SourceBadge key={sourceId} sourceId={sourceId} />
+              ))}
+            </div>
+
             <div style={{ marginTop: 16, padding: "12px 14px", background: "#FAFAF7", borderRadius: 8, borderLeft: `4px solid ${active.color}` }}>
               <p style={{ margin: 0, fontSize: 13.5, color: "#333", lineHeight: 1.5 }}>
                 <strong style={{ color: active.color }}>Plain-English analogy:</strong> {active.analogy}
+              </p>
+            </div>
+
+            <div style={{ marginTop: 16, padding: "14px 18px", background: "#F8F6F1", borderRadius: 8, border: "1px solid #ECE7E0" }}>
+              <p style={{ margin: "0 0 8px", fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 1.5, textTransform: "uppercase", color: "#666" }}>
+                Source Mapping
+              </p>
+              <p style={{ margin: "0 0 8px", fontSize: 13.5, color: "#333", lineHeight: 1.55 }}>
+                <strong>OpenAI mapping:</strong> {active.openaiMapping}
+              </p>
+              <p style={{ margin: "0 0 8px", fontSize: 13.5, color: "#333", lineHeight: 1.55 }}>
+                <strong>Anthropic framing:</strong> {active.sourceFraming.anthropic}
+              </p>
+              <p style={{ margin: "0 0 8px", fontSize: 13.5, color: "#333", lineHeight: 1.55 }}>
+                <strong>OpenAI framing:</strong> {active.sourceFraming.openai}
+              </p>
+              <p style={{ margin: 0, fontSize: 13.5, color: "#333", lineHeight: 1.55 }}>
+                <strong>Synthesis note:</strong> {active.sourceFraming.synthesis}
               </p>
             </div>
 
@@ -390,6 +463,34 @@ export default function ArchitecturePatterns() {
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 18 }}>
           <div style={{ padding: 22, background: "#fff", borderRadius: 12, border: "1px solid #E7E0D9" }}>
+            <h2 style={{ margin: "0 0 10px", fontSize: 20, color: "#1a1a1a" }}>How the Guides Relate</h2>
+            <div style={{ marginBottom: 12, padding: "12px 14px", borderRadius: 8, background: "#F8F6F1" }}>
+              <p style={{ margin: "0 0 4px", fontFamily: "'Helvetica Neue', sans-serif", fontSize: 12, fontWeight: 700, color: "#444" }}>
+                Anthropic goes broader on pattern taxonomy
+              </p>
+              <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.5, color: "#666" }}>
+                This page keeps Anthropic&apos;s richer pattern vocabulary because it distinguishes sequential, parallel, collaborative, and evaluator flows more explicitly.
+              </p>
+            </div>
+            <div style={{ marginBottom: 12, padding: "12px 14px", borderRadius: 8, background: "#F8F6F1" }}>
+              <p style={{ margin: "0 0 4px", fontFamily: "'Helvetica Neue', sans-serif", fontSize: 12, fontWeight: 700, color: "#444" }}>
+                OpenAI sharpens orchestration mechanics
+              </p>
+              <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.5, color: "#666" }}>
+                OpenAI&apos;s guide makes the manager pattern and decentralized handoffs especially useful for mapping implementation choices back to concrete orchestration behavior.
+              </p>
+            </div>
+            <div style={{ padding: "12px 14px", borderRadius: 8, background: "#F8F6F1" }}>
+              <p style={{ margin: "0 0 4px", fontFamily: "'Helvetica Neue', sans-serif", fontSize: 12, fontWeight: 700, color: "#444" }}>
+                This synthesis keeps both lenses
+              </p>
+              <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.5, color: "#666" }}>
+                Anthropic helps you reason about architectural shape; OpenAI helps you reason about how that shape is implemented and handed off in practice.
+              </p>
+            </div>
+          </div>
+
+          <div style={{ padding: 22, background: "#fff", borderRadius: 12, border: "1px solid #E7E0D9" }}>
             <h2 style={{ margin: "0 0 10px", fontSize: 20, color: "#1a1a1a" }}>Hybrid Patterns</h2>
             {hybrids.map((item) => (
               <div key={item.name} style={{ marginBottom: 12, padding: "12px 14px", borderRadius: 8, background: "#F8F6F1" }}>
@@ -413,9 +514,13 @@ export default function ArchitecturePatterns() {
         </div>
 
         <p style={{ textAlign: "center", fontSize: 11, color: "#aaa", marginTop: 28, fontFamily: "'Helvetica Neue', sans-serif" }}>
-          Source:{" "}
-          <a href={sourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
-            Anthropic, "Building Effective AI Agents: Architecture Patterns and Implementation Frameworks" (PDF)
+          Sources:{" "}
+          <a href={anthropicSourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
+            Anthropic guide
+          </a>
+          {" · "}
+          <a href={openaiSourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
+            OpenAI guide
           </a>
         </p>
       </div>
