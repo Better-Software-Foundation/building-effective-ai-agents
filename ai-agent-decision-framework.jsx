@@ -349,13 +349,13 @@ export default function DecisionFramework() {
       <div style={{ maxWidth: 860, margin: "0 auto" }}>
         <div style={{ marginBottom: 28, borderBottom: "3px solid #1a1a1a", paddingBottom: 18 }}>
           <p style={{ fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", color: "#888", margin: "0 0 8px" }}>
-            Anthropic · Building Effective AI Agents
+            Decision Framework
           </p>
           <h1 style={{ fontSize: 28, fontWeight: 700, margin: "0 0 6px", color: "#1a1a1a", lineHeight: 1.2 }}>
             Architecture Decision Framework
           </h1>
           <p style={{ fontSize: 14, color: "#666", margin: 0, fontStyle: "italic" }}>
-            First decide whether this should be an agent at all, then choose the right architecture shape.
+            First decide whether the workflow should be agentic at all, then choose an appropriate architecture.
           </p>
         </div>
 

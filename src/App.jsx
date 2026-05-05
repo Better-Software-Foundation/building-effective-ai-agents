@@ -14,19 +14,19 @@ import FoundationsAndGuardrails from "./FoundationsAndGuardrails";
 import ComparativeGuide from "./ComparativeGuide";
 
 const quickPoints = [
-  "Built for people who need the big ideas fast",
-  "Synthesizes Anthropic and OpenAI guidance with explicit source attribution",
-  "Focused on patterns, tradeoffs, implementation foundations, practical decisions, and cross-source comparison",
+  "Built for readers who want the main ideas quickly",
+  "Brings together Anthropic and OpenAI guidance with clear source attribution",
+  "Organized around architecture, implementation, decision-making, and comparison",
 ];
 
 const visitorGuidance = [
   {
     label: "Suggested Path",
-    text: "Start with the summary, use the decision framework to qualify the workflow, then move into patterns, foundations, and the comparative guide.",
+    text: "Start with the summary, use the decision framework to assess the workflow, then move into patterns, foundations, and comparison.",
   },
   {
     label: "Best For",
-    text: "Engineering leaders, product teams, technical educators, and curious builders exploring agent design choices.",
+    text: "Engineering leaders, product teams, technical educators, and builders evaluating agent design choices.",
   },
 ];
 
@@ -78,9 +78,9 @@ function HomePage() {
         <p className="eyebrow">Better Software Foundation</p>
         <h1>Building Effective AI Agents</h1>
         <p className="hero-copy">
-          An interactive guide that synthesizes Anthropic and OpenAI thinking on
-          agent design, implementation, safety, and decision-making for people
-          who need the important ideas quickly.
+          An interactive guide to Anthropic&apos;s and OpenAI&apos;s frameworks
+          for building agents, with focused paths for architecture,
+          implementation, safety, and comparison.
         </p>
         <div className="hero-actions">
           <Link className="primary-link" to="/summary">
@@ -140,10 +140,11 @@ function HomePage() {
       <section className="source-panel">
         <p className="panel-label">About This Project</p>
         <p className="panel-text">
-          This site turns two major agent-building guides into a compact
-          interactive learning product. It combines architectural tradeoffs,
-          implementation foundations, decision support, and a comparative lens
-          that makes source agreement and divergence easier to see.
+          This project brings together Anthropic&apos;s and OpenAI&apos;s
+          guidance on building agents into one interactive reference. It is
+          designed to help readers move from core concepts to architecture
+          choices, implementation foundations, and direct comparison between
+          the two sources.
         </p>
         <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 14 }}>
           <SourceBadge sourceId="anthropic" />

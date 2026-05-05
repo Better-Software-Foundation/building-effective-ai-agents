@@ -6,14 +6,14 @@ const sourceUrl =
 
 const quickTakeaways = [
   "Start with the simplest agent that can prove value.",
-  "Use Skills and workflow structure before jumping to full multi-agent systems.",
+  "Use skills and workflow structure before jumping to full multi-agent systems.",
   "Invest in observability early so you can explain cost, quality, and failure modes.",
 ];
 
 const summaryRole = [
-  "This page gives the fastest strategic read on the architecture and tradeoff side of the topic.",
-  "Use Foundations & Guardrails next if you need implementation building blocks, safety layers, and human-oversight guidance.",
-  "Use Compare if you want the terminology crosswalk and the breadth-versus-depth view across both guides.",
+  "This page is the quickest way to understand the architecture and tradeoff side of the topic.",
+  "Use Foundations & Guardrails next if you need implementation building blocks, safety layers, and human oversight guidance.",
+  "Use Compare if you want a terminology crosswalk and a breadth-versus-depth view of both guides.",
 ];
 
 const sections = [
@@ -86,10 +86,10 @@ const sections = [
 ];
 
 const nextSteps = [
-  { label: "Read next", text: "Go to the Architecture Patterns view if you need to compare options quickly.", to: "/patterns" },
-  { label: "Implementation lens", text: "Go to Foundations & Guardrails for the model, tools, instructions, and safety layer.", to: "/foundations" },
-  { label: "Decision lens", text: "Go to the Decision Framework when you need a recommendation under time pressure.", to: "/decision" },
-  { label: "Compare the sources", text: "Go to Compare for the terminology crosswalk and the breadth-versus-depth matrix.", to: "/compare" },
+  { label: "Read next", text: "Open Architecture Patterns if you want to compare the main options quickly.", to: "/patterns" },
+  { label: "Implementation lens", text: "Open Foundations & Guardrails for the model, tools, instructions, and safety layer.", to: "/foundations" },
+  { label: "Decision lens", text: "Open the Decision Framework if you need a recommendation under time pressure.", to: "/decision" },
+  { label: "Compare the guides", text: "Open Compare for the terminology crosswalk and the breadth-versus-depth matrix.", to: "/compare" },
 ];
 
 export default function ExecutiveSummary() {
@@ -107,7 +107,7 @@ export default function ExecutiveSummary() {
             Building Effective AI Agents
           </h1>
           <p style={{ fontSize: 13.5, color: "#999", margin: 0, fontStyle: "italic" }}>
-            An Anthropic-led opening brief for the broader interactive synthesis across Anthropic and OpenAI guidance.
+            A concise entry point into the architecture and tradeoff side of the broader guide.
           </p>
         </div>
 

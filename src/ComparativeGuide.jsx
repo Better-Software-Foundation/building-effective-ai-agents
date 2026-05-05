@@ -94,8 +94,7 @@ export default function ComparativeGuide() {
             Comparative Guide
           </h1>
           <p style={{ fontSize: 14, color: "#666", margin: 0, fontStyle: "italic" }}>
-            A side-by-side reading aid for understanding where Anthropic and
-            OpenAI overlap, where they differ, and what the synthesis adds.
+            A side-by-side guide to where Anthropic and OpenAI overlap, where they differ, and how this app combines them.
           </p>
         </div>
 
@@ -124,9 +123,7 @@ export default function ComparativeGuide() {
             {comparativeGuideSummary.text}
           </p>
           <p style={{ margin: "0 0 14px", fontSize: 13.5, lineHeight: 1.55, color: "#666" }}>
-            The scoring, canonical terms, and crosswalk notes on this page are
-            editorial synthesis designed to shorten the reading path while
-            keeping source differences visible.
+            The scores, shared terms, and crosswalk notes on this page are editorial judgments meant to shorten the reading path while keeping source differences visible.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
             <SourceBadge sourceId="anthropic" />
@@ -171,7 +168,7 @@ export default function ComparativeGuide() {
                 Breadth vs Depth Overview
               </h2>
               <p style={{ margin: "0 0 16px", fontSize: 13.5, color: "#666", lineHeight: 1.55 }}>
-                These scores are an editorial synthesis, not a scientific benchmark. They are meant to help readers understand where each source goes broad, where it goes deep, and where this app now sits.
+                These scores are a reading aid, not a formal benchmark. They show where each source goes broad, where it goes deep, and how the app positions itself between them.
               </p>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: 14 }}>
                 {breadthDepthProfiles.map((profile) => (
@@ -212,7 +209,7 @@ export default function ComparativeGuide() {
                 Topic-by-Topic Heatmap
               </h2>
               <p style={{ margin: "0 0 14px", fontSize: 13.5, color: "#666", lineHeight: 1.55 }}>
-                Each row compares breadth and depth for a specific concept. Breadth captures how widely a source treats the topic; depth captures how much practical detail it provides.
+                Each row compares breadth and depth for a specific concept. Breadth shows how widely a source treats the topic; depth shows how much practical detail it provides.
               </p>
               <div style={{ overflowX: "auto" }}>
                 <table style={{ width: "100%", borderCollapse: "collapse" }}>

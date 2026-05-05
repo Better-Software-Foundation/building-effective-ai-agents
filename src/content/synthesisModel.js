@@ -39,7 +39,7 @@ export const routeArchitecture = [
     path: "/summary",
     title: "Executive Summary",
     description:
-      "A fast-reading synthesis of the major ideas, tradeoffs, and practical implications.",
+      "A concise overview of the main ideas, tradeoffs, and practical implications.",
     status: "live",
     sourceIds: ["anthropic"],
     role: "High-level framing and takeaways",
@@ -48,7 +48,7 @@ export const routeArchitecture = [
     path: "/patterns",
     title: "Architecture Patterns",
     description:
-      "Compare orchestration patterns, tradeoffs, and where different guides align or diverge.",
+      "Compare architecture patterns, tradeoffs, and where the two guides align or differ.",
     status: "live",
     sourceIds: ["anthropic", "openai", "synthesis"],
     role: "Architecture options and tradeoffs",
@@ -57,7 +57,7 @@ export const routeArchitecture = [
     path: "/decision",
     title: "Decision Framework",
     description:
-      "Choose the right level of agent complexity based on control, risk, and implementation constraints.",
+      "Choose an appropriate level of agent complexity based on control, risk, and implementation constraints.",
     status: "live",
     sourceIds: ["anthropic", "openai", "synthesis"],
     role: "Decision support and recommended next step",
@@ -66,7 +66,7 @@ export const routeArchitecture = [
     path: "/foundations",
     title: "Foundations & Guardrails",
     description:
-      "Define what an agent is, when to build one, and how to implement models, tools, instructions, and safeguards.",
+      "Define what an agent is, when to build one, and how to design models, tools, instructions, and safeguards.",
     status: "live",
     sourceIds: ["openai", "synthesis"],
     role: "Implementation fundamentals and safety",
@@ -81,7 +81,7 @@ export const routeArchitecture = [
     path: "/compare",
     title: "Comparative Guide",
     description:
-      "Crosswalk the terminology, strengths, and blind spots of the Anthropic and OpenAI guides.",
+      "Compare the terminology, strengths, and emphasis of the Anthropic and OpenAI guides.",
     status: "live",
     sourceIds: ["anthropic", "openai", "synthesis"],
     role: "Cross-source synthesis and comparison",
@@ -152,16 +152,16 @@ export const terminologyCrosswalk = [
 ];
 
 export const synthesisPrinciples = [
-  "Use Anthropic as the stronger architecture and scaling lens.",
-  "Use OpenAI as the stronger foundations and guardrails lens.",
-  "Keep source attribution explicit so readers can separate original claims from synthesis.",
-  "Prefer shared canonical language only when the concept truly overlaps.",
+  "Anthropic is the stronger lens for architecture patterns, scaling paths, and production tradeoffs.",
+  "OpenAI is the stronger lens for implementation foundations, orchestration mechanics, and guardrails.",
+  "Source labels stay visible so readers can distinguish original guidance from editorial synthesis.",
+  "Shared terminology is used only where the underlying concepts genuinely align.",
 ];
 
 export const comparativeGuideSummary = {
   title: "How the guides differ",
   text:
-    "Anthropic and OpenAI overlap on core agent-building principles, but they optimize for different reader needs. Anthropic is broader on architecture, evolution, and tradeoffs. OpenAI is deeper on foundations, orchestration mechanics, and guardrails. This app aims to combine both into a more navigable learning experience.",
+    "Anthropic and OpenAI overlap on core agent-building principles, but they emphasize different parts of the problem. Anthropic is broader on architecture, evolution, and tradeoffs. OpenAI is deeper on foundations, orchestration mechanics, and guardrails. This app combines both into a shorter, easier-to-navigate reference.",
 };
 
 export const breadthDepthProfiles = [
@@ -187,7 +187,7 @@ export const breadthDepthProfiles = [
     badgeId: "synthesis",
     breadth: 4,
     depth: 4,
-    summary: "Selective depth plus cross-source synthesis intended to reduce reading time and improve application.",
+    summary: "A selective synthesis designed to shorten reading time and support practical decisions.",
   },
 ];
 

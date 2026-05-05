@@ -189,8 +189,7 @@ export default function FoundationsAndGuardrails() {
             Foundations & Guardrails
           </h1>
           <p style={{ fontSize: 14, color: "#666", margin: 0, fontStyle: "italic" }}>
-            The implementation layer of the synthesis: what an agent is, when to
-            use one, how to structure it, and how to keep it safe.
+            A practical guide to what an agent is, when to use one, how to structure it, and how to keep it safe.
           </p>
         </div>
 
@@ -216,10 +215,7 @@ export default function FoundationsAndGuardrails() {
             30-Second Summary
           </p>
           <p style={{ margin: "0 0 14px", fontSize: 15, lineHeight: 1.65, color: "#333" }}>
-            OpenAI adds the clearest implementation-first framing in the current
-            synthesis: define whether the workflow should be an agent at all,
-            build around model, tools, and behavior guidance, and layer
-            guardrails plus human intervention before scaling autonomy.
+            Start by deciding whether the workflow should be agentic at all, then build around model choice, tools, and behavior guidance. Add guardrails and human intervention before expanding autonomy.
           </p>
           <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginBottom: 14 }}>
             <SourceBadge sourceId="openai" />
@@ -411,9 +407,7 @@ export default function FoundationsAndGuardrails() {
             Continue Fast
           </p>
           <p style={{ margin: "0 0 14px", fontSize: 13.5, color: "#666", lineHeight: 1.55 }}>
-            This page is strongest on implementation fundamentals. Move next
-            based on whether you need qualification, architecture selection, or
-            source comparison.
+            This page focuses on implementation fundamentals. Move next based on whether you need workflow qualification, architecture selection, or source comparison.
           </p>
           <div
             style={{
@@ -442,10 +436,10 @@ export default function FoundationsAndGuardrails() {
             </Link>
             <Link to="/compare" style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8, textDecoration: "none" }}>
               <p style={{ margin: "0 0 6px", fontWeight: 700, fontSize: 13, color: "#333" }}>
-                Methodology note
+                Compare the guides
               </p>
               <p style={{ margin: 0, fontSize: 13, color: "#555", lineHeight: 1.5 }}>
-                Use Compare to see where this page is OpenAI-led, where Anthropic complements it, and how the synthesis language was chosen.
+                Use Compare to see where this page leans on OpenAI, where Anthropic complements it, and how the shared terminology was chosen.
               </p>
             </Link>
           </div>
