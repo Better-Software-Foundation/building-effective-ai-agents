@@ -3,7 +3,7 @@ import SourceBadge from "./src/components/SourceBadge";
 
 const anthropicSourceUrl =
   "https://resources.anthropic.com/hubfs/Building%20Effective%20AI%20Agents-%20Architecture%20Patterns%20and%20Implementation%20Frameworks.pdf";
-const openaiSourceUrl = "https://openai.com/index/a-practical-guide-to-building-agents/";
+const openaiSourceUrl = "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf";
 
 const patterns = [
   {

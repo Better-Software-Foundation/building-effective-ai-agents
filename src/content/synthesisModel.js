@@ -15,7 +15,7 @@ export const sourceRegistry = {
     shortLabel: "OpenAI",
     color: "#0F5132",
     background: "#D9F3E4",
-    url: "https://openai.com/index/a-practical-guide-to-building-agents/",
+    url: "https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf",
     title: "A practical guide to building agents",
   },
   both: {
