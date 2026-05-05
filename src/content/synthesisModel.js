@@ -92,6 +92,15 @@ export const routeArchitecture = [
       "What the synthesis adds",
     ],
   },
+  {
+    path: "/glossary",
+    title: "Glossary",
+    description:
+      "Learn the core terms used across both guides, with concise definitions and source-aware explanations.",
+    status: "live",
+    sourceIds: ["anthropic", "openai", "synthesis"],
+    role: "Shared vocabulary and definitions",
+  },
 ];
 
 export const terminologyCrosswalk = [
@@ -280,5 +289,188 @@ export const sourceStrengths = [
       "A single product that links concept, decision, implementation, and comparison",
       "Faster comprehension than reading both guides linearly",
     ],
+  },
+];
+
+export const glossaryTerms = [
+  {
+    term: "Agent",
+    category: "Core concept",
+    sourceIds: ["openai", "anthropic", "synthesis"],
+    definition:
+      "A system that can pursue a task over multiple steps by reasoning, using tools, and deciding what to do next.",
+    note:
+      "OpenAI defines the boundary more explicitly; Anthropic reinforces the idea through architecture and workflow design.",
+  },
+  {
+    term: "Single-agent system",
+    category: "Architecture",
+    sourceIds: ["anthropic", "openai", "both"],
+    definition:
+      "One capable agent handling the workflow end to end, usually with tools and structured guidance.",
+    note:
+      "Both guides recommend this as the default starting point before introducing more orchestration.",
+  },
+  {
+    term: "Skills",
+    category: "Behavior layer",
+    sourceIds: ["anthropic", "synthesis"],
+    definition:
+      "Reusable capability packages that combine expertise, instructions, workflow patterns, and sometimes tool usage expectations.",
+    note:
+      "Anthropic uses this term more broadly than OpenAI's 'instructions'.",
+  },
+  {
+    term: "Instructions",
+    category: "Behavior layer",
+    sourceIds: ["openai", "synthesis"],
+    definition:
+      "The explicit behavioral guidance that tells an agent how to act, what steps to follow, and how to respond in edge cases.",
+    note:
+      "OpenAI treats instructions as a core building block alongside models and tools.",
+  },
+  {
+    term: "Tools",
+    category: "Implementation",
+    sourceIds: ["anthropic", "openai", "both"],
+    definition:
+      "External capabilities an agent can call, such as retrieval, APIs, file access, search, or actions in other systems.",
+    note:
+      "Tools define what the agent can actually do beyond generating text.",
+  },
+  {
+    term: "Routine",
+    category: "Behavior layer",
+    sourceIds: ["openai", "synthesis"],
+    definition:
+      "A repeatable set of instructions or steps an agent can follow for a common workflow.",
+    note:
+      "OpenAI uses routines to make agent behavior more explicit and easier to test.",
+  },
+  {
+    term: "Routing",
+    category: "Implementation",
+    sourceIds: ["anthropic", "openai", "synthesis"],
+    definition:
+      "The logic that decides which tool, skill, workflow branch, or agent should handle a task next.",
+    note:
+      "Routing becomes more important as systems gain more tools, more paths, or more specialized agents.",
+  },
+  {
+    term: "Orchestration",
+    category: "Implementation",
+    sourceIds: ["anthropic", "openai", "both"],
+    definition:
+      "The coordination layer that manages how work moves between models, tools, workflows, and agents.",
+    note:
+      "OpenAI tends to describe orchestration more mechanically; Anthropic emphasizes the architectural tradeoffs it introduces.",
+  },
+  {
+    term: "Manager pattern",
+    category: "Architecture",
+    sourceIds: ["openai", "synthesis"],
+    definition:
+      "A central orchestrator that delegates tasks to specialist agents and combines the results.",
+    note:
+      "This maps closely to Anthropic's hierarchical or supervisory pattern.",
+  },
+  {
+    term: "Hierarchical / supervisory system",
+    category: "Architecture",
+    sourceIds: ["anthropic", "synthesis"],
+    definition:
+      "A multi-agent structure with one coordinator overseeing several specialist agents.",
+    note:
+      "This is often the most practical first step beyond a single-agent setup.",
+  },
+  {
+    term: "Handoff",
+    category: "Architecture",
+    sourceIds: ["openai", "synthesis"],
+    definition:
+      "A transfer of control from one agent to another when a different capability, perspective, or workflow is needed.",
+    note:
+      "OpenAI uses handoffs to describe decentralized delegation more precisely than Anthropic does.",
+  },
+  {
+    term: "Collaborative / peer-to-peer system",
+    category: "Architecture",
+    sourceIds: ["anthropic", "openai", "synthesis"],
+    definition:
+      "A multi-agent setup where agents interact more directly with one another instead of always routing through one supervisor.",
+    note:
+      "Anthropic emphasizes collaboration broadly; OpenAI is more specific about decentralized handoff mechanics.",
+  },
+  {
+    term: "Sequential workflow",
+    category: "Architecture",
+    sourceIds: ["anthropic", "synthesis"],
+    definition:
+      "A controlled process in which work moves through clearly ordered stages.",
+    note:
+      "This is useful when the workflow is predictable and traceability matters.",
+  },
+  {
+    term: "Parallel workflow",
+    category: "Architecture",
+    sourceIds: ["anthropic", "synthesis"],
+    definition:
+      "A workflow in which multiple bounded analyses or subtasks run at the same time and are merged later.",
+    note:
+      "This is helpful for speed, breadth, or confidence, but it increases coordination cost.",
+  },
+  {
+    term: "Evaluator-optimizer",
+    category: "Architecture",
+    sourceIds: ["anthropic", "synthesis"],
+    definition:
+      "A loop where one system generates an output and another critiques it until the quality is good enough.",
+    note:
+      "Anthropic names this pattern explicitly; OpenAI supports similar thinking through routines and guardrails.",
+  },
+  {
+    term: "Guardrails",
+    category: "Safety",
+    sourceIds: ["openai", "anthropic", "synthesis"],
+    definition:
+      "Controls that limit unsafe behavior, validate inputs and outputs, and determine when a human should intervene.",
+    note:
+      "OpenAI goes deeper on concrete implementation patterns; Anthropic complements this with operational watchouts and governance.",
+  },
+  {
+    term: "Human intervention",
+    category: "Safety",
+    sourceIds: ["openai", "synthesis"],
+    definition:
+      "A deliberate point where the system pauses, escalates, or requests human judgment before continuing.",
+    note:
+      "Useful for low-confidence cases, high-impact decisions, or irreversible actions.",
+  },
+  {
+    term: "Memory / context management",
+    category: "Operations",
+    sourceIds: ["anthropic", "openai", "synthesis"],
+    definition:
+      "The way a system decides what past information to keep, retrieve, summarize, or discard while the agent works.",
+    note:
+      "Poor context management leads to degraded quality, higher cost, and brittle behavior as workflows become longer.",
+  },
+  {
+    term: "Observability",
+    category: "Operations",
+    sourceIds: ["anthropic", "synthesis"],
+    definition:
+      "The ability to inspect prompts, tool calls, costs, failures, and decision paths in production.",
+    note:
+      "Anthropic stresses observability as essential for debugging, trust, and cost control.",
+  },
+  {
+    term: "Behavior & expertise layer",
+    category: "Synthesis",
+    sourceIds: ["synthesis"],
+    definition:
+      "The app's shared term for the layer that shapes how an agent behaves, what it knows, and how it applies reusable guidance.",
+    note:
+      "This is the closest common ground between OpenAI's instructions and Anthropic's skills.",
   },
 ];

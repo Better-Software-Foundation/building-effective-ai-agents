@@ -12,6 +12,7 @@ import ArchitecturePatterns from "../ai-agent-architecture-patterns.jsx";
 import DecisionFramework from "../ai-agent-decision-framework.jsx";
 import FoundationsAndGuardrails from "./FoundationsAndGuardrails";
 import ComparativeGuide from "./ComparativeGuide";
+import GlossaryPage from "./GlossaryPage";
 
 const quickPoints = [
   "Built for readers who want the main ideas quickly",
@@ -231,6 +232,7 @@ export default function App() {
         <Route path="/decision" element={<DecisionFramework />} />
         <Route path="/foundations" element={<FoundationsAndGuardrails />} />
         <Route path="/compare" element={<ComparativeGuide />} />
+        <Route path="/glossary" element={<GlossaryPage />} />
       </Routes>
       <Analytics />
     </div>
