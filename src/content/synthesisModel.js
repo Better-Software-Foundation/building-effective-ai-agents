@@ -59,7 +59,7 @@ export const routeArchitecture = [
     description:
       "Choose the right level of agent complexity based on control, risk, and implementation constraints.",
     status: "live",
-    sourceIds: ["anthropic"],
+    sourceIds: ["anthropic", "openai", "synthesis"],
     role: "Decision support and recommended next step",
   },
   {
@@ -67,7 +67,7 @@ export const routeArchitecture = [
     title: "Foundations & Guardrails",
     description:
       "Define what an agent is, when to build one, and how to implement models, tools, instructions, and safeguards.",
-    status: "planned",
+    status: "live",
     sourceIds: ["openai", "synthesis"],
     role: "Implementation fundamentals and safety",
     plannedSections: [

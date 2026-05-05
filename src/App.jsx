@@ -10,6 +10,7 @@ import {
 import ExecutiveSummary from "../ai-agent-executive-summary.jsx";
 import ArchitecturePatterns from "../ai-agent-architecture-patterns.jsx";
 import DecisionFramework from "../ai-agent-decision-framework.jsx";
+import FoundationsAndGuardrails from "./FoundationsAndGuardrails";
 
 const quickPoints = [
   "Built for people who need the big ideas fast",
@@ -20,7 +21,7 @@ const quickPoints = [
 const visitorGuidance = [
   {
     label: "Suggested Path",
-    text: "Start with the summary, compare patterns next, then use the decision framework before diving into foundations and comparative analysis.",
+    text: "Start with the summary, use the decision framework to qualify the workflow, then move into patterns and foundations.",
   },
   {
     label: "Best For",
@@ -225,7 +226,6 @@ function SiteNav() {
 }
 
 export default function App() {
-  const foundations = routeArchitecture.find((item) => item.path === "/foundations");
   const compare = routeArchitecture.find((item) => item.path === "/compare");
 
   return (
@@ -236,17 +236,7 @@ export default function App() {
         <Route path="/summary" element={<ExecutiveSummary />} />
         <Route path="/patterns" element={<ArchitecturePatterns />} />
         <Route path="/decision" element={<DecisionFramework />} />
-        <Route
-          path="/foundations"
-          element={
-            <PlannedExperiencePage
-              title={foundations.title}
-              summary={foundations.description}
-              plannedSections={foundations.plannedSections}
-              sourceIds={foundations.sourceIds}
-            />
-          }
-        />
+        <Route path="/foundations" element={<FoundationsAndGuardrails />} />
         <Route
           path="/compare"
           element={

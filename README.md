@@ -42,7 +42,7 @@ This project currently presents the source material through three live experienc
 - `Executive Summary`: a compressed, high-signal walkthrough of the main argument
 - `Architecture Patterns`: an interactive comparison of agent design options
 - `Decision Framework`: a guided chooser for selecting an architecture approach
-- `Foundations & Guardrails`: planned implementation-focused route drawing more heavily from OpenAI
+- `Foundations & Guardrails`: live implementation-focused route drawing more heavily from OpenAI
 - `Comparative Guide`: planned crosswalk route comparing Anthropic and OpenAI directly
 
 `vercel.json` includes a rewrite so direct visits to routes like `/summary` or `/decision` load correctly.

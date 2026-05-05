@@ -1,7 +1,29 @@
 import { useState } from "react";
 
-const sourceUrl =
+const anthropicSourceUrl =
   "https://resources.anthropic.com/hubfs/Building%20Effective%20AI%20Agents-%20Architecture%20Patterns%20and%20Implementation%20Frameworks.pdf";
+const openaiSourceUrl = "https://openai.com/index/a-practical-guide-to-building-agents/";
+
+const screeningQuestions = [
+  {
+    id: "complex_decisions",
+    title: "Does this workflow require complex decision-making?",
+    description:
+      "Think judgment calls, ambiguity, exception handling, or context-sensitive reasoning where rules alone perform poorly.",
+  },
+  {
+    id: "brittle_rules",
+    title: "Has this workflow become hard to maintain with rules?",
+    description:
+      "Think sprawling if-then logic, exception-heavy automation, or systems that break whenever the workflow shifts.",
+  },
+  {
+    id: "unstructured_data",
+    title: "Does the workflow rely heavily on unstructured data?",
+    description:
+      "Think documents, emails, screenshots, tickets, conversations, PDFs, or other language-first input the system must interpret.",
+  },
+];
 
 const questions = [
   {
@@ -112,6 +134,36 @@ const costData = [
   { pattern: "Hierarchical Multi-Agent", tokens: "10-15x", note: "Useful when specialist coordination clearly earns its keep" },
   { pattern: "Collaborative Multi-Agent", tokens: "10-15x+", note: "Highest cost and hardest to predict operationally" },
 ];
+
+const screeningOutcomes = {
+  strong: {
+    label: "Strong agent fit",
+    color: "#2D6A4F",
+    bg: "#D8F3DC",
+    summary:
+      "This workflow has the traits that usually justify agentic design: ambiguity, brittle rule systems, or heavy unstructured data.",
+    next:
+      "Continue into the architecture questions and decide how much control and orchestration you actually need.",
+  },
+  possible: {
+    label: "Possible fit",
+    color: "#B45309",
+    bg: "#FEF3C7",
+    summary:
+      "There are signs an agent could help, but the case is not overwhelming yet. You may still want to compare against simpler deterministic automation.",
+    next:
+      "Continue if you want to explore an agentic option, but sanity-check whether a simpler workflow could solve the problem first.",
+  },
+  weak: {
+    label: "Weak fit",
+    color: "#6A040F",
+    bg: "#FFD6D6",
+    summary:
+      "This workflow does not strongly match the conditions that typically justify an agent. A deterministic system may be the better starting point.",
+    next:
+      "Only continue if you have another reason to explore agents; otherwise, prioritize conventional automation or software design first.",
+  },
+};
 
 const patternNotes = {
   "Single Agent": {
@@ -261,11 +313,29 @@ function getDecisionSupport(answers, rec) {
   };
 }
 
+function getScreeningResult(screeningAnswers) {
+  const positives = screeningQuestions.filter((item) => screeningAnswers[item.id] === "yes").length;
+
+  if (positives >= 2) return { key: "strong", positives };
+  if (positives === 1) return { key: "possible", positives };
+  return { key: "weak", positives };
+}
+
 export default function DecisionFramework() {
   const [answers, setAnswers] = useState({});
+  const [screeningAnswers, setScreeningAnswers] = useState({});
+  const [showArchitecture, setShowArchitecture] = useState(false);
+
+  const screeningComplete = screeningQuestions.every((item) => screeningAnswers[item.id]);
+  const screeningResult = screeningComplete ? getScreeningResult(screeningAnswers) : null;
+  const screeningMeta = screeningResult ? screeningOutcomes[screeningResult.key] : null;
 
   const handleSelect = (qId, value) => {
     setAnswers((prev) => ({ ...prev, [qId]: value }));
+  };
+
+  const handleScreeningSelect = (qId, value) => {
+    setScreeningAnswers((prev) => ({ ...prev, [qId]: value }));
   };
 
   const allAnswered = questions.every((q) => answers[q.id]);
@@ -285,7 +355,7 @@ export default function DecisionFramework() {
             Architecture Decision Framework
           </h1>
           <p style={{ fontSize: 14, color: "#666", margin: 0, fontStyle: "italic" }}>
-            Answer four questions to get a recommendation, a cheaper fallback, and the likely evolution path.
+            First decide whether this should be an agent at all, then choose the right architecture shape.
           </p>
         </div>
 
@@ -298,13 +368,13 @@ export default function DecisionFramework() {
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: 10 }}>
             <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
+              <strong>Agent fit first.</strong> Not every workflow should become agentic.
+            </div>
+            <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
               <strong>Control high?</strong> Lean simpler.
             </div>
             <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
               <strong>Complexity high?</strong> Add structure slowly.
-            </div>
-            <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
-              <strong>Budget tight?</strong> Avoid heavy coordination.
             </div>
             <div style={{ padding: "12px 14px", background: "#F8F5F0", borderRadius: 8 }}>
               <strong>Need expertise?</strong> Try skills before more agents.
@@ -312,10 +382,92 @@ export default function DecisionFramework() {
           </div>
         </div>
 
-        {questions.map((q, qi) => (
+        <div style={{ marginBottom: 24, padding: 22, background: "#fff", borderRadius: 12, border: "1px solid #E0DCD6" }}>
+          <p style={{ fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#888", margin: "0 0 10px" }}>
+            Step 1 · Should This Be An Agent?
+          </p>
+          <p style={{ margin: "0 0 16px", fontSize: 14, lineHeight: 1.65, color: "#444" }}>
+            OpenAI recommends prioritizing agents when traditional automation falls short because the workflow depends on nuanced decisions, brittle rule systems, or unstructured inputs.
+          </p>
+
+          {screeningQuestions.map((item) => (
+            <div key={item.id} style={{ marginBottom: 18 }}>
+              <h3 style={{ fontFamily: "'Helvetica Neue', sans-serif", fontSize: 12, letterSpacing: 1.3, textTransform: "uppercase", color: "#555", margin: "0 0 8px" }}>
+                {item.title}
+              </h3>
+              <p style={{ margin: "0 0 10px", fontSize: 13.5, color: "#666", lineHeight: 1.55 }}>
+                {item.description}
+              </p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {[
+                  { label: "Yes", value: "yes" },
+                  { label: "No", value: "no" },
+                ].map((option) => {
+                  const selected = screeningAnswers[item.id] === option.value;
+
+                  return (
+                    <button
+                      key={option.value}
+                      onClick={() => handleScreeningSelect(item.id, option.value)}
+                      style={{
+                        padding: "10px 16px",
+                        borderRadius: 999,
+                        border: selected ? "2px solid #1a1a1a" : "1px solid #D4CFC8",
+                        background: selected ? "#fff" : "#FDFCFA",
+                        cursor: "pointer",
+                        fontFamily: "'Helvetica Neue', sans-serif",
+                        fontWeight: selected ? 700 : 500,
+                        color: "#333",
+                      }}
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+          ))}
+
+          {screeningMeta && (
+            <div style={{ marginTop: 12, padding: 18, borderRadius: 10, background: screeningMeta.bg }}>
+              <p style={{ margin: "0 0 6px", fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 1.3, textTransform: "uppercase", color: screeningMeta.color }}>
+                {screeningMeta.label}
+              </p>
+              <p style={{ margin: "0 0 10px", fontSize: 14, lineHeight: 1.6, color: "#333" }}>
+                {screeningMeta.summary}
+              </p>
+              <p style={{ margin: 0, fontSize: 13.5, lineHeight: 1.55, color: "#444" }}>
+                {screeningMeta.next}
+              </p>
+            </div>
+          )}
+
+          {screeningComplete && (
+            <div style={{ marginTop: 16 }}>
+              <button
+                onClick={() => setShowArchitecture(true)}
+                style={{
+                  minHeight: 44,
+                  padding: "0 18px",
+                  borderRadius: 999,
+                  border: "none",
+                  background: "#1a1a1a",
+                  color: "#fff",
+                  cursor: "pointer",
+                  fontFamily: "'Helvetica Neue', sans-serif",
+                  fontWeight: 700,
+                }}
+              >
+                Continue to architecture selection
+              </button>
+            </div>
+          )}
+        </div>
+
+        {showArchitecture && questions.map((q, qi) => (
           <div key={q.id} style={{ marginBottom: 24 }}>
             <h3 style={{ fontFamily: "'Helvetica Neue', sans-serif", fontSize: 12, letterSpacing: 1.5, textTransform: "uppercase", color: "#555", margin: "0 0 10px" }}>
-              {qi + 1}. {q.question}
+              Step 2.{qi + 1} {q.question}
             </h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
               {q.options.map((opt) => {
@@ -349,7 +501,7 @@ export default function DecisionFramework() {
           </div>
         ))}
 
-        {rec && tier && support && (
+        {showArchitecture && rec && tier && support && (
           <div style={{ marginTop: 12, padding: 24, background: "#fff", border: `2px solid ${tier.color}33`, borderRadius: 12, boxShadow: "0 4px 16px rgba(0,0,0,0.06)" }}>
             <p style={{ fontFamily: "'Helvetica Neue', sans-serif", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", color: "#888", margin: "0 0 12px" }}>
               Recommended Pattern
@@ -441,9 +593,13 @@ export default function DecisionFramework() {
         </div>
 
         <p style={{ textAlign: "center", fontSize: 11, color: "#aaa", marginTop: 24, fontFamily: "'Helvetica Neue', sans-serif" }}>
-          Source:{" "}
-          <a href={sourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
-            Anthropic, "Building Effective AI Agents: Architecture Patterns and Implementation Frameworks" (PDF)
+          Sources:{" "}
+          <a href={anthropicSourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
+            Anthropic guide
+          </a>
+          {" · "}
+          <a href={openaiSourceUrl} target="_blank" rel="noreferrer" style={{ color: "inherit", fontWeight: 700 }}>
+            OpenAI guide
           </a>
         </p>
       </div>
